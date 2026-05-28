@@ -198,12 +198,12 @@ const binaryDirectory = join(outDir, "bun");
 mkdirSync(tarballDirectory, { recursive: true });
 
 if (!options.skipCheck) {
-	run("npm", ["run", "check"], { cwd: repoRoot });
+	run("bun", ["run", "check"], { cwd: repoRoot });
 }
 
 for (const pkg of packages) {
-	run("npm", ["run", "clean"], { cwd: pkg.directory });
-	run("npm", ["run", "build"], { cwd: pkg.directory });
+	run("bun", ["run", "clean"], { cwd: pkg.directory });
+	run("bun", ["run", "build"], { cwd: pkg.directory });
 }
 
 const tarballs = new Map();

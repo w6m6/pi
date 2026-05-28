@@ -81,7 +81,7 @@ function bumpOrSetVersion(target) {
 
 	if (BUMP_TYPES.has(target)) {
 		console.log(`Bumping version (${target})...`);
-		run(`npm run version:${target}`);
+		run(`bun run version:${target}`);
 		return getVersion();
 	}
 
@@ -91,7 +91,7 @@ function bumpOrSetVersion(target) {
 	}
 
 	console.log(`Setting explicit version (${target})...`);
-	run(`npm version ${target} -ws --no-git-tag-version && node scripts/sync-versions.js && npm install --package-lock-only`);
+	run(`npm version ${target} -ws --no-git-tag-version && node scripts/sync-versions.js && bun install && npm install --package-lock-only`);
 	return getVersion();
 }
 
@@ -165,7 +165,7 @@ console.log();
 
 // 4. Generate publish shrinkwrap
 console.log("Generating coding-agent shrinkwrap...");
-run("npm run shrinkwrap:coding-agent");
+run("bun run shrinkwrap:coding-agent");
 console.log();
 
 // 5. Commit and tag
@@ -177,7 +177,7 @@ console.log();
 
 // 6. Publish
 console.log("Publishing to npm...");
-run("npm run publish");
+run("bun run publish");
 console.log();
 
 // 7. Add new [Unreleased] sections
